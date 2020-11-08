@@ -4,6 +4,6 @@
     border: none;
     font-family: Arial, Helvetica, sans-serif;
 }
-html {
-
+h1 {
+    width: max-content;
 }
