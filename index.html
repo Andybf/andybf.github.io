@@ -1,24 +1,69 @@
 <html>
-
 	<head>
 		<meta charset="utf-8" />
-		<link rel="styleseet" type="text/css" href="style.css"/>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<title>Andybf's Website</title>
+		<script>
+            var darkMode = false;
+
+            function SwitchTheme() {
+                if (!darkMode) {
+                    document.documentElement.style.setProperty("--varSecondBackground","#333");
+                    document.documentElement.style.setProperty("--varPrimaryShadow","#1B1B1B");
+                    document.documentElement.style.setProperty("--varSecondShadow","#1B1B1B");
+                    document.documentElement.style.setProperty("--varFontColor","#fff");
+                    document.documentElement.style.setProperty("--varFirstBackground","#191919");
+                    darkMode = true;
+                } else {
+                    document.documentElement.style.setProperty("--varSecondBackground","#fff");
+                    document.documentElement.style.setProperty("--varFirstBackground","#fff");
+                    document.documentElement.style.setProperty("--varPrimaryShadow","#ddd");
+                    document.documentElement.style.setProperty("--varSecondShadow","#F5F5F5");
+                    document.documentElement.style.setProperty("--varFontColor","#333");
+                    darkMode = false;
+                }
+            }
+        </script>
 	</head>
 
 	<body>
 		<header>
 			<nav>
-				<h1>Andybf Website</h1>
-				<ul>
-					<li>Home</li>
-					<li>Sobre mim</li>
-					<li>Contato</li>
+				<ul class="left-nav">
+					<li>Andybf Website</li>
+				</ul>
+				<ul class="center-nav">
+					<li><button onclick="">Home</button></li>
+					<li><button onclick="">Sobre Mim</button></li>
+					<li><button onclick="">Contato</button></li>
+				</ul>
+				<ul class="right-nav">
+					<li><button onclick="SwitchTheme()">Switch Theme</button></li>
 				</ul>
 			</nav>
 		</header>
 		<section>
-			
+			<article>
+				Analista de Sistemas
+			</article>
+			<article>
+				Email: anderson584bf@gmail.com
+			</article>
+			<article>
+				linkedin: https://www.linkedin.com/feed/
+			</article>
+			<article>
+				linkedin: https://www.linkedin.com/feed/
+			</article>
+			<article>
+				linkedin: https://www.linkedin.com/feed/
+			</article>
+			<article>
+				linkedin: https://www.linkedin.com/feed/
+			</article>
+			<article>
+				linkedin: https://www.linkedin.com/feed/
+			</article>
 		</section>
 
 		<footer>
