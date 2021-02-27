@@ -1,116 +1,97 @@
 <!--
- * Autor: Anderson Bucchianico
- * Data Criação: 24/out/2018
- * Ultima modificação: 15/jan/2019
+    PaintSpace ver. 3.0
+    Created By: Anderson Bucchianico
+          Date: 30/jan/2021
 -->
-
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Paint Space - Libere sua Criatividade</title>
-	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilo.css">
-    <script src="jquery.js"></script>
-    <script src="main.js"></script>
-    <script src="funcoes.js"></script>
-    <script src="controle.js"></script>
-    <script src="criar-formas.js"></script> 
-    <script src="selecao-formas.js"></script> 
-</head>
-<body onload="
-        iniciarCanvas();
-        iniciarPrevisu();
-        corFundo();
-    " id="body">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="Styling/Core.css"/>
+        <link rel="stylesheet" href="Styling/Canvas.css"/>
+        <link rel="stylesheet" href="Styling/FloatWindow.css"/>
+        <link rel="stylesheet" href="Styling/ToolOptions.css"/>
+        <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
+        <title>PaintSpace 3.0</title>
+    </head>
+    <body>
+        <header class="container top">
+            <h1 id="title" class="title">PaintSpace</h1>               
+            <nav class="menubar">
+                <div class="tool-options">
+                    <button class="menu-item" id="load-image" ></button>
+                    <button class="menu-item" id="save-image" ></button>
+                    <button class="menu-item" id="clear-canvas" ></button>
+                    <button class="menu-item" id="resolution" ></button>
+                    <button class="menu-item" id="zoom" ></button>
+                    <button class="menu-item" id="settings" ></button>
+                    <button class="menu-item" id="about" ></button>
+                </div>
+                <hr size="1" class="separator"/>
+                <comp-tooloptions class="tool-options"></comp-tooloptions>
+            </nav>
+        </header>
 
-    <!-- previsualização da forma -->
-    <canvas id="formaativa" width="80" height="80"></canvas>
+        <section class="container left">
+            <div class="subcontainer">
+                <button class="tool-item" id="pointer" title="" >
+                    <object id="free-draw-img"
+                            data="./media/image/pointer.svg"
+                    ></object>
+                </button>
+                <button class="tool-item" id="brush" title="">
+                    <object id="free-draw-img"
+                            data="./media/image/brush.svg"
+                    ></object>
+                </button>
+                <button class="tool-item" id="pencil" title="">
+                    <object id="free-draw-img"
+                            data="./media/image/pencil.svg"
+                    ></object>
+                </button>
+                <button class="tool-item" id="line" title="" >
+                    <object id="free-draw-img"
+                            data="./media/image/line.svg"
+                    ></object>
+                </button>
+                <button class="tool-item" id="square" title="">
+                    <object id="free-draw-img"
+                            data="./media/image/square.svg"
+                    ></object>
+                </button>
+                <button class="tool-item" id="circle" title="" >
+                    <object id="free-draw-img"
+                            data="./media/image/circle.svg"
+                    ></object>
+                </button>
+                <button class="tool-item" id="triangle" title="">
+                    <object id="free-draw-img"
+                            data="./media/image/triangle.svg"
+                    ></object>
+                </button>
+                <button class="tool-item" id="text" title="">
+                    <object id="free-draw-img"
+                            data="./media/image/text.svg"
+                    ></object>
+                </button>
+                <button class="tool-item" id="color-picker" title="">
+                    <object id="free-draw-img"
+                            data="./media/image/color-picker.svg"
+                    ></object>
+                </button>
+                <button class="tool-item" id="eraser" title="">
+                    <object id="free-draw-img"
+                            data="./media/image/eraser.svg"
+                    ></object>
+                </button>
+            </div>
+        </section>
 
-    <!-- painel superior -->
-    <div id="painelsuperior">
-        <div id="titulo">
-            Paint Space
-        </div>
-        <!-- foram necessários alguns ajustes finos de CSS nos itens do painel superior-->
-        <button style="bottom: 8px;" onclick="limparTela()">Limpar Tela</button>
-        <!-- Tamanho -->
-        <div class="display">
-            <button id="tamanhomenos" onclick="diminuirTamanho()">-</button>
-            <button id="tamanhomais" onclick="aumentarTamanho()">+</button>
-            Tamanho<br>
-            <div name="tamanho" ></div>
-        </div>
-        <!-- Rotação -->
-        <div class="display">
-            <button id="tamanhomenos" onclick="menosRotacao()">-</button>
-            <button id="tamanhomais" onclick="maisRotacao()">+</button>
-            Rotação<br>
-            <div name="rotacao" ></div>
-        </div>
-        <!-- Bordas -->
-        <div class="display">
-            <button id="tamanhomenos" onclick="menosBorda()">-</button>
-            <button id="tamanhomais" onclick="maisBorda()">+</button>
-            Bordas<br>
-            <div name="borda" ></div>
-        </div>
-        <!-- Resolução -->
-        <div class="display" style="position:relative; bottom: 8px; width: 290px;">
-                X:
-                <input type="text" id="caixares" value="teste" name="pixelsX">
-                Y:
-                <input type="text" id="caixares" value="teste" name="pixelsY">
-                <button style="height: 26px; margin-top: 2px; margin-bottom: 0px;" onclick="resolucao()">Resolução</button>
-        </div>
-        <button style="bottom: 8px;" onclick="selectSelCor()">Copiar Cor</button>
-        <!-- botão para abrir o painel de configurações -->
-        <button id="config" onclick="ativarPainelConfig()"><img src="cog.png"></img></button>
-        <div id="displayposicao" name="displayposicao"></div>
-    </div>
+        <comp-canvascontainer> </comp-canvascontainer>
 
-    <!-- painel de configurações -->
-    <div id="painelblur" >a</div>
-    <div id="painelconfig">
-        <div id="titulo-menu">Painel de Configurações</div>
-        <button id="fechar" onclick="desativarPainelConfig()">X</button>
-        <br>
-        <br>
-        <input id="previsu" type="checkbox" >
-        <label for="previsu">Habilitar pré-visualização da forma.</label>
-        <br>
-        <br>
-        <input id="efeitos" type="checkbox" onclick=" if (EfeitosGraficos) {EfeitosGraficos = false} else{EfeitosGraficos = true;corFundo();}">
-        <label for="efeitos">Habilitar efeitos gráficos de fundo.</label>
-        <br>
-        <br>
-        <div id="config-velocidade">
-            Velocidade na transição de cores:
-            <br>
-            Mais Veloz
-            <input id="slide" type="range" min="17" max="2000">
-            Mais Lento
-        </div>
-    </div>
+        <comp-floatwindow></comp-floatwindow>
 
-    <!-- painel lateral -->
-    <div id="painellateral">
-        <br>
-        <button onclick="selectCirculo()">Circulo</button>
-        <button onclick="selectQuadrado()">Quadrado</button>
-        <button onclick="selectPixel()">Pixel</button>
-        <button onclick="selectTriangulo()">Triângulo</button>
-        <button onclick="selectBorracha()">Borracha</button>
-        <br><br>
-        Cor Interna:
-        <input onchange="mudarCor()" type="color" name="cor" id="colorSelector">
-        <div id="displaycorinterna" name="cor"></div>
-        <br>
-        Cor da Borda:
-        <input onchange="mudarCorBorda()" type="color" name="corborda" id="colorSelector">
-        <div id="displaycorborda" name="corborda"></div>
-    </div>
-
-    <!-- tela do canvas -->
-    <canvas id="tela"></canvas>
-</body>
+    </body>
+    <script type="module" src="./Modules/Core.js"></script>
 </html>
