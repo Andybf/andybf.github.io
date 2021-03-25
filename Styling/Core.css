@@ -27,10 +27,10 @@
 }
 
 @font-face {
-    font-family: Lily; src: url('../Media/font/LilyScriptOne-Regular.ttf');
+    font-family: Lily; src: url('../media/font/LilyScriptOne-Regular.ttf');
 }
 @font-face {
-    font-family: OpenSans; src: url('../Media/font/OpenSans-Semibold.ttf');
+    font-family: OpenSans; src: url('../media/font/OpenSans-Semibold.ttf');
 }
 
 html {
