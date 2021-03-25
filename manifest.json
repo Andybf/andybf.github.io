@@ -7,7 +7,7 @@
     "description": "Description",
     "display" : "standalone",
     "icons": [{
-      "src": "/Media/image/logo.png",
+      "src": "/media/image/logo.png",
       "sizes": "192x192",
       "type": "image/png"
     }],
